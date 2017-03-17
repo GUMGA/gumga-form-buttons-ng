@@ -1,0 +1,27 @@
+{
+  "name": "gumga-form-buttons",
+  "description": "Gumga Form Buttons",
+  "main": "./src/index.js",
+  "authors": [
+    "Gumga Tecnologia da Informação S/A"
+  ],
+  "license": "GPL-3.0",
+  "keywords": [
+    "gumga",
+    "form",
+    "buttons"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.8",
+    "angular-bootstrap": "2.3.2",
+    "angular-ui-router": "0.2.15"
+  }
+}
