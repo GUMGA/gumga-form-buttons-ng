@@ -1,5 +1,5 @@
 {
-  "name": "gumga-form-buttons",
+  "name": "gumga-form-buttons-ng",
   "description": "Gumga Form Buttons",
   "main": "./src/index.js",
   "authors": [
@@ -9,7 +9,8 @@
   "keywords": [
     "gumga",
     "form",
-    "buttons"
+    "buttons",
+    "angular 1.x"
   ],
   "homepage": "",
   "ignore": [

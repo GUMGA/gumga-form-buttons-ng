@@ -1,12 +1,10 @@
 {
-  "name": "gumga-form-buttons",
+  "name": "gumga-form-buttons-ng",
   "version": "1.0.0",
   "description": "Gumga Form Buttons",
   "main": "./src/form-buttons.js",
   "dependencies": {
-    "angular": "1.5.8",
-    "angular-ui-bootstrap": "2.3.2",
-    "angular-ui-router": "0.2.15"
+    "angular": "1.5.8"
   },
   "babel": {
     "presets": [
@@ -22,7 +20,9 @@
     "ng-html2js": "^3.0.0",
     "npm-run-all": "^2.3.0",
     "uglify-js": "^2.7.0",
-    "watchify": "^3.7.0"
+    "watchify": "^3.7.0",
+    "angular-ui-bootstrap": "2.3.2",
+    "angular-ui-router": "0.2.15"
   },
   "scripts": {
     "start": "npm-run-all -p live-server dev",
@@ -39,7 +39,8 @@
   "keywords": [
     "gumga",
     "form",
-    "buttons"
+    "buttons",
+    "angular 1.x"
   ],
   "author": "Gumga Tecnologia da Informação S/A",
   "license": "GPL-3.0"
