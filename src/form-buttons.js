@@ -16,14 +16,18 @@
           <div class="col-md-12">`
       const templateInline = `
         <div ng-class="vm.getPosition()">
-          <label for="gumgakeep" ng-if="vm.continue">
-            <input type="checkbox" id="gumgakeep" name="gumgakeep" ng-model="vm.shouldContinue" ng-true-value="true" ng-false-value="false" />
-            {{::vm.keepInsertingText}}
-          </label>
-          <button type="button" ng-click="vm.submit()" ng-disabled="!vm.valid" class="btn btn-primary form-buttons-margin" >
+
+         <div class="checkbox" style="display: inline;" for="gumgakeep" ng-if="vm.continue">
+           <label>
+             <input type="checkbox" class="gmd" data-ng-model="vm.shouldContinue"  id="gumgakeep" name="gumgakeep" ng-true-value="true" ng-false-value="false">
+             <span class="box"></span>
+             {{::vm.keepInsertingText}}
+           </label>
+         </div>
+          <button type="button" ng-click="vm.submit()" ng-disabled="!vm.valid" class="btn btn-primary form-buttons-margin {{vm.class}} {{vm.classSave}}" >
             {{::vm.saveText}}
           </button>
-          <button type="button" ng-click="vm.returnClicked()" class="btn btn-default form-buttons-margin" ng-class="vm.reverseOrder ? 'pull-left' : 'pull-right'">
+          <button type="button" ng-click="vm.returnClicked()" class="btn btn-default form-buttons-margin {{vm.class}} {{vm.classCancel}}" ng-class="vm.reverseOrder ? 'pull-left' : 'pull-right'">
           {{::vm.returnText}}
           </button>
         </div>`
@@ -114,6 +118,9 @@
     return {
       restrict: 'E',
       scope: {
+        classSave: '@?',
+        classCancel: '@?',
+        class: '@?',
         submit: '&?',
         valid: '=?',
         model: '=?',
