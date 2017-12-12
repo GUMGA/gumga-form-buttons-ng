@@ -12,15 +12,15 @@
 
     function controller($scope, $element, $attrs) {
       var vm = this;
-
       if (!$attrs.submit) throw 'É necessário passar uma função para submissão de formulário <gumga-form-buttons submit="foo()"></gumga-form-buttons>';
 
       var templateBlockBegin = '\n        <div class="row">\n          <div class="col-md-12">';
-      var templateInline = '\n        <div ng-class="vm.getPosition()">\n\n         <div class="checkbox" style="display: inline;" for="gumgakeep" ng-if="vm.continue">\n           <label>\n             <input type="checkbox" class="gmd" data-ng-model="shouldContinue"  id="gumgakeep" name="gumgakeep" ng-true-value="true" ng-false-value="false">\n             <span class="box"></span>\n             {{::vm.keepInsertingText}}\n           </label>\n         </div>\n          <button type="button" ng-click="vm.submit()" ng-disabled="!vm.valid" class="btn btn-primary form-buttons-margin {{vm.class}} {{vm.classSave}}" >\n            {{::vm.saveText}}\n          </button>\n          <button type="button" ng-click="vm.returnClicked()" class="btn btn-default form-buttons-margin {{vm.class}} {{vm.classCancel}}" ng-class="vm.reverseOrder ? \'pull-left\' : \'pull-right\'">\n          {{::vm.returnText}}\n          </button>\n        </div>';
+      var templateInline = '\n        <div ng-class="vm.getPosition()">\n\n         <div class="checkbox" style="display: inline;" for="gumgakeep" ng-show="vm.continue">\n           <label>\n             <input type="checkbox" class="gmd" data-ng-model="vm.shouldContinue"  name="gumgakeep">\n             <span class="box"></span>\n             {{::vm.keepInsertingText}}\n           </label>\n         </div>\n          <button type="button" ng-click="vm.submit()" ng-disabled="!vm.valid" class="btn btn-primary form-buttons-margin {{vm.class}} {{vm.classSave}}" >\n            {{::vm.saveText}}\n          </button>\n          <button type="button" ng-click="vm.returnClicked()" class="btn btn-default form-buttons-margin {{vm.class}} {{vm.classCancel}}" ng-class="vm.reverseOrder ? \'pull-left\' : \'pull-right\'">\n          {{::vm.returnText}}\n          </button>\n        </div>';
       var templateBlockEnd = '\n        </div>\n      </div>\n            ';
 
-      var modalTemplate = '\n        <div class="modal-body">\n          <h3>\n            <span class="glyphicon glyphicon-alert"></span>\n            Sair da tela e descartar altera\xE7\xF5es?\n          </h3>\n        </div>\n        <div class="modal-footer">\n          <button type="button" class="btn btn-default" ng-click="ctrl.dismiss()">N\xE3o</button>\n          <button type="button" class="btn btn-primary" ng-click="ctrl.close()">Sim</button>\n        </div>\n\t\t\t';
+      var modalTemplate = '\n        <div class="modal-body">\n          <h3>\n            <span class="glyphicon glyphicon-alert"></span>\n            Sair da tela e descartar altera\xE7\xF5es?\n          </h3>\n        </div>\n        <div class="modal-footer">\n          <button type="button" class="btn btn-default" ng-click="ctrl.dismiss()">N\xE3o</button>\n          <button type="button" class="btn btn-primary" ng-click="ctrl.close()">Sim</button>\n        </div>\n      ';
 
+      vm.shouldContinue = $scope.$eval(vm.shouldContinue);
       vm.modelInit = angular.copy(vm.model);
       vm.continue = $scope.$eval(vm.continue);
       vm.confirmDirty = $scope.$eval(vm.confirmDirty);
@@ -78,7 +78,7 @@
       });
 
       $scope.$on('data-sent', function (value) {
-        if (!$scope.shouldContinue) $state.go(vm.stateToReturn);
+        if (!vm.shouldContinue) $state.go(vm.stateToReturn);
       });
 
       var template = '';

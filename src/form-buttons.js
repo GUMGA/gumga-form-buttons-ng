@@ -8,7 +8,6 @@
 
     function controller($scope, $element, $attrs) {
       let vm = this;
-
       if (!$attrs.submit) throw 'É necessário passar uma função para submissão de formulário <gumga-form-buttons submit="foo()"></gumga-form-buttons>'
 
       const templateBlockBegin = `
@@ -17,9 +16,9 @@
       const templateInline = `
         <div ng-class="vm.getPosition()">
 
-         <div class="checkbox" style="display: inline;" for="gumgakeep" ng-if="vm.continue">
+         <div class="checkbox" style="display: inline;" for="gumgakeep" ng-show="vm.continue">
            <label>
-             <input type="checkbox" class="gmd" data-ng-model="shouldContinue"  id="gumgakeep" name="gumgakeep" ng-true-value="true" ng-false-value="false">
+             <input type="checkbox" class="gmd" data-ng-model="vm.shouldContinue"  name="gumgakeep">
              <span class="box"></span>
              {{::vm.keepInsertingText}}
            </label>
@@ -47,8 +46,9 @@
           <button type="button" class="btn btn-default" ng-click="ctrl.dismiss()">Não</button>
           <button type="button" class="btn btn-primary" ng-click="ctrl.close()">Sim</button>
         </div>
-			`;
-
+      `;
+      
+      vm.shouldContinue = $scope.$eval(vm.shouldContinue);
       vm.modelInit = angular.copy(vm.model);
       vm.continue = $scope.$eval(vm.continue);
       vm.confirmDirty = $scope.$eval(vm.confirmDirty);
@@ -104,7 +104,7 @@
       $attrs.$observe('confirmDirty', value => (vm.confirmDirty = $scope.$eval(vm.confirmDirty)));
 
       $scope.$on('data-sent', value => {
-        if (!$scope.shouldContinue) $state.go(vm.stateToReturn);
+        if (!vm.shouldContinue) $state.go(vm.stateToReturn);
       });
 
       let template = ``;
