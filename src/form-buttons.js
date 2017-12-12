@@ -19,7 +19,7 @@
 
          <div class="checkbox" style="display: inline;" for="gumgakeep" ng-if="vm.continue">
            <label>
-             <input type="checkbox" class="gmd" data-ng-model="vm.shouldContinue"  id="gumgakeep" name="gumgakeep" ng-true-value="true" ng-false-value="false">
+             <input type="checkbox" class="gmd" data-ng-model="shouldContinue"  id="gumgakeep" name="gumgakeep" ng-true-value="true" ng-false-value="false">
              <span class="box"></span>
              {{::vm.keepInsertingText}}
            </label>
@@ -102,8 +102,9 @@
 
       $attrs.$observe('continue', value => (vm.continue = $scope.$eval(vm.continue)));
       $attrs.$observe('confirmDirty', value => (vm.confirmDirty = $scope.$eval(vm.confirmDirty)));
+
       $scope.$on('data-sent', value => {
-        if (!vm.shouldContinue) $state.go(vm.stateToReturn);
+        if (!$scope.shouldContinue) $state.go(vm.stateToReturn);
       });
 
       let template = ``;
@@ -123,6 +124,7 @@
         class: '@?',
         submit: '&?',
         valid: '=?',
+        shouldContinue: '=?',
         model: '=?',
         continue: '@?',
         confirmDirty: '@?',
